@@ -1,4 +1,4 @@
-package org.example.HomeWork11;
+package org.example.HomeWork11.Task1;
 //найти самую короткую и самую длинную строки. Вывести найденные строки и их длину.
 
 public class ShortAndLongStrings {

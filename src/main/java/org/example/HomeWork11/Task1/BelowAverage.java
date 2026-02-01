@@ -1,4 +1,4 @@
-package org.example.HomeWork11;
+package org.example.HomeWork11.Task1;
 
 public class BelowAverage {
     private String[] strings;

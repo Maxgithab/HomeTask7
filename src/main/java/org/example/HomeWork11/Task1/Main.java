@@ -1,4 +1,4 @@
-package org.example.HomeWork11;
+package org.example.HomeWork11.Task1;
 
 /*
 1. Ввести 3 строки с консоли, найти самую короткую и самую длинную строки. Вывести найденные строки и их длину.

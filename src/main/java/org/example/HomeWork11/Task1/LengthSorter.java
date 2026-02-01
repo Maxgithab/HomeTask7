@@ -1,4 +1,4 @@
-package org.example.HomeWork11;
+package org.example.HomeWork11.Task1;
 
 import java.util.Arrays;
 import java.util.Comparator;
