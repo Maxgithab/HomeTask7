@@ -16,8 +16,8 @@ public class ShortAndLongStrings {
         System.out.println("\nПункт 1: Самая короткая и длинная строка");
         String shortest = shortest();
         String longest = longest();
-        System.out.println("Самая короткая: " + shortest + "\nЕё длина: " + shortest.length());
-        System.out.println("Самая длинная: " + longest + "\nЕё длина: " + longest.length());
+        System.out.println("Самая короткая: \"" + shortest + "\"\nЕё длина: " + shortest.length());
+        System.out.println("Самая длинная: \"" + longest + "\"\nЕё длина: " + longest.length());
     }
 
     public String shortest() {

@@ -19,7 +19,7 @@ public class LengthSorter {
         System.out.println("\nПункт 2: Упорядочить и вывести в порядке возрастания длины");
         String[] sorted = sortLengthStrings();
         for (int i = 0; i < sorted.length; i++) {
-            System.out.printf("%d. %s (длина: %d) %n",
+            System.out.printf("%d. \"%s\" (длина: %d) %n",
                 i + 1,
                 sorted[i],
                 sorted[i].length());
