@@ -1,31 +1,71 @@
 package org.example.HomeWork11;
 
+import java.util.Scanner;
+
 public class RequestStrings {
-    // 1 часть
-    private String str1;
-    private String str2;
-    private String str3;
     private String[] strings;
-
-    public RequestStrings() {
-        str1 = "Первая первая первая";
-        str2 = "Вторая вторая";
-        str3 = "Третья";
-
-        strings = new String[3];
-        strings[0] = str1;
-        strings[1] = str2;
-        strings[2] = str3;
-    }
+    private Scanner scanner;
 
     public String[] getStrings() {
-        return strings;
+        return strings;  // ← должен возвращать массив строк
+    }
+
+    public RequestStrings() {
+        this.scanner = new Scanner(System.in);
+        this.strings = inputFromConsole();
+    }
+
+    private String[] inputFromConsole() {
+        int count = requestStringCount();
+        return requestStrings(count);
+    }
+
+    private int requestStringCount() {
+        while (true) {
+            try {
+                System.out.print("Сколько строк будет? от 3 до 10: ");
+                int count = scanner.nextInt();
+                scanner.nextLine();
+
+                if (count < 3) {
+                    System.out.println("Дурачок? Минимум 3 строки!");
+                } else if (count > 10) {
+                    System.out.println("Дурачок? Максимум 10 строк!");
+                } else {
+                    return count;
+                }
+            } catch (Exception e) {
+                System.out.println("Опять за старое? Дай число от 3 до 10.");
+                scanner.nextLine();
+            }
+        }
+    }
+
+    private String[] requestStrings(int count) {
+        String[] inputStrings = new String[count];
+        System.out.println("Введите " + count + " строк:");
+
+        for (int i = 0; i < count; i++) {
+            while (true) {
+                System.out.print("Строка " + (i + 1) + ": ");
+                String input = scanner.nextLine().trim();
+
+                if (input.isEmpty()) {
+                    System.out.println("Не пустое! По новой!");
+                    continue;
+                }
+                inputStrings[i] = input;
+                break;
+            }
+        }
+        return inputStrings;
     }
 
     public void printAllStrings() {
-        System.out.println("Входные данные");
+        System.out.println("\nВходные данные");
         for (int i = 0; i < strings.length; i++) {
-            System.out.printf("%d. \"%s\" (длина: %d)%n", i + 1, strings[i], strings[i].length());
+            System.out.printf("%d. \"%s\" (длина: %d)%n",
+                i + 1, strings[i], strings[i].length());
         }
     }
 }
