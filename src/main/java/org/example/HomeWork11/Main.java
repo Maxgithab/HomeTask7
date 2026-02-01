@@ -21,5 +21,11 @@ public class Main {
         BelowAverage task3 = new BelowAverage(request);
         task3.findBelowAverageAndPrint();
 
+        UniqueWords task4 = new UniqueWords(request);
+        task4.findUniqueAndPrint();
+
+        DoubleChars task5 = new DoubleChars(request);
+        task5.doubleAndPrint();
+
     }
 }
