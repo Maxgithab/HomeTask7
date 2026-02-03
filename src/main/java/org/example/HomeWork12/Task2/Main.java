@@ -12,8 +12,6 @@ document number: 1423-1512-51
 и т.д
 * */
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -22,10 +20,10 @@ public class Main {
         FinderText find = new FinderText();
 
         String testText = """
-            1423-1512-51 email: ivanov@mail.com Тел.+(37)1234567 
+            1423-1512-51 email: ivanov@mail.com Тел.+(37)1234567
             документ: 1424-1513-52 Email: petrov@gmail.com Без телефона
             +(38)7654321  email: info@company.org
-            Мои документы: 1111-2222-33 и 4444-5555-66.\s
+            Мои документы: 1111-2222-33 и 4444-5555-66.
             Пишите на email@test.com или звоните +(77)1234567.
             Уважаемый клиент!\s
             Ваш заказ №1234-5678-90 готов.
@@ -40,7 +38,7 @@ public class Main {
             email: user@domain.com
             name.lastname@subdomain.company.co.uk
             8-800-555-35-35
-            """;
+           \s""";
         find.search(testText);
 
         scanner.close();

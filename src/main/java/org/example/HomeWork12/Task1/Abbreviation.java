@@ -7,8 +7,7 @@ import java.util.regex.Pattern;
 public class Abbreviation {
 
     public void findAbbreviations() {
-        Scanner scanner = new Scanner(System.in);
-        try {
+        try (Scanner scanner = new Scanner(System.in)) {
             System.out.print("Дай текст:");
             String text = scanner.nextLine();
 
@@ -17,8 +16,6 @@ public class Abbreviation {
                 return;
             }
             findAndPrintAbbreviations(text);
-        } finally {
-            scanner.close();
         }
     }
 
