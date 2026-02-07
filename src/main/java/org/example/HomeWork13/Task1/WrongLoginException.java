@@ -1,4 +1,4 @@
-package org.example.HomeWork13;
+package org.example.HomeWork13.Task1;
 
 public class WrongLoginException extends Exception {
 
