@@ -24,6 +24,8 @@ public class Main {
         boolean result4 = Validation.validate("user", "password", "password");
         boolean result5 = Validation.validate("user", "pass123", "pass456");
         boolean result6 = Validation.validate("user", "pass 123", "pass 123");
+        boolean result7 = Validation.validate("ghyt", "", "");
+
 
         System.out.println(result1);
         System.out.println(result2);
@@ -31,6 +33,7 @@ public class Main {
         System.out.println(result4);
         System.out.println(result5);
         System.out.println(result6);
+        System.out.println(result7);
     }
 }
 
