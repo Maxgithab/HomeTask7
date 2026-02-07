@@ -16,4 +16,21 @@ WrongPasswordException. WrongPasswordException и WrongLoginException -
  */
 
 public class Main {
+    public static void main(String[] args) {
+
+        boolean result1 = Validation.validate("user123", "pass123word", "pass123word");
+        boolean result2 = Validation.validate("оченьдлинныйлогинбольше20", "pass1", "pass1");
+        boolean result3 = Validation.validate("user name", "pass1", "pass1");
+        boolean result4 = Validation.validate("user", "password", "password");
+        boolean result5 = Validation.validate("user", "pass123", "pass456");
+        boolean result6 = Validation.validate("user", "pass 123", "pass 123");
+
+        System.out.println(result1);
+        System.out.println(result2);
+        System.out.println(result3);
+        System.out.println(result4);
+        System.out.println(result5);
+        System.out.println(result6);
+    }
 }
+
