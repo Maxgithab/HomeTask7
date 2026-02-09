@@ -1,5 +1,10 @@
 package org.example.HomeWork14.Task1;
 
+/*
+Задача 1:
+В задании приложен файл Ромео и Джульетта на английском, вычитать его в приложении.
+Проанализировать и записать в другой файл самое длинное слово.*/
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
