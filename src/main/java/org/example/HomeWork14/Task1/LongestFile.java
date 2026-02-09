@@ -26,10 +26,8 @@ public class LongestFile {
             String longestWord = "";
 
             for (String word : words) {
-                if (word.length() > longestWord.length()){
+                if (word.length() > longestWord.length()) {
                     longestWord = word;
-              //  } else if (word.length() == longestWord.length() && !word.equals(longestWord)) {
-               //     longestWord += ", " + word;
                 }
             }
 
@@ -38,7 +36,7 @@ public class LongestFile {
             Path outputPath = Paths.get("longest.txt");
             Files.writeString(outputPath, longestWord);
 
-            System.out.println("Путь к файлу : " + outputPath.toAbsolutePath());
+            System.out.println("Путь к сохраненному файлу : " + outputPath.toAbsolutePath());
 
         } catch (IOException e) {
             System.out.println("Упс " + e.getMessage());
