@@ -12,3 +12,8 @@ public class Final {
         }
     }
 }
+
+/*
+* Задача *:
+Написать try/catch/finally, в котором finally вызван не будет
+* */
