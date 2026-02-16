@@ -1,4 +1,4 @@
-package org.example.HomeWork15.Task2;
+package org.example.HomeWork16.Task2;
 
 /*
 На вход поступает массив непустых строк, создайте и верните Map<String,
