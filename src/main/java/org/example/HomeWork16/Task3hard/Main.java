@@ -1,4 +1,4 @@
-package org.example.HomeWork16.Task3;
+package org.example.HomeWork16.Task3hard;
 
 /*Задача *:
 Задана строка, которая может иметь внутри себя скобки. Скобкой считается
