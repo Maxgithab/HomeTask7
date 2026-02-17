@@ -103,7 +103,7 @@ public class Main {
 
         smallList.addElements("D");
         smallList.addElements("E");
-        smallList.addElements("F");
+        //smallList.addElements("F");
         smallList.addElements("G");
         smallList.addElements("H");
 
