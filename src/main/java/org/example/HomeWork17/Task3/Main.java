@@ -17,8 +17,12 @@ public class Main {
             String[] text = string.split(" ");
             String amountTextCurrency = text[0];
             double amountBynCurrency = Double.parseDouble(amountTextCurrency);
-            double amountUsdCurrency = amountBynCurrency / exchaneRate;
-            return amountUsdCurrency;
+            return amountBynCurrency / exchaneRate;
         };
+
+        String price =  "100 BYN";
+        double usd = bynToUsd.apply(price);
+        System.out.println(price + " - это примерно " + Math.round(usd) + " USD");
+
     }
 }
