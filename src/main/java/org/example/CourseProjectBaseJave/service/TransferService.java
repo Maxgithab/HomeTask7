@@ -27,7 +27,7 @@ public class TransferService {
                 long toBalance = accounts.get(toAccount);
 
                 accounts.put(fromAccount, fromBalance - amount);
-                accounts.put(toAccount, fromBalance + amount);
+                accounts.put(toAccount, toBalance + amount);
             }
 
             return new Transaction(fromAccount, toAccount, amount);
