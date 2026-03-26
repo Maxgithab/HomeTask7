@@ -73,7 +73,7 @@ public class SaxParserService {
             throw new Exception("где-то в файле не нашлось, надо проверить XML");
         }
 
-        String fileSonnetName = firstName[0] + "_" + lastName[0] + "_" + title[0] + ".txt";
+        String fileSonnetName = "Sax_Parser_" + firstName[0] + "_" + lastName[0] + "_" + title[0] + ".txt";
 
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileSonnetName))) {
             for (String line : lines) {
