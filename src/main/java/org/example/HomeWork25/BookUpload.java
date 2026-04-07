@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 
 public class BookUpload extends HttpServlet {
 
-    private static final String UPLOADED = "book_upload";
+    private static final String UPLOADED = "books";
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
@@ -44,9 +44,13 @@ public class BookUpload extends HttpServlet {
         filePart.write(filePath);
 
         httpServletResponse.setContentType("text/html;charset=UTF-8");
-        httpServletResponse.getWriter().println("Файл загружен, The file is Uploaded.    ");
-        httpServletResponse.getWriter().println("Имя файла The Name of the file is: " + fileName);
-        httpServletResponse.getWriter().println("Путь файла The Path of the file is: " + filePath);
-        httpServletResponse.getWriter().println("<a href='/time-servlet/book?file=\" + fileName + \"'>Попробуй скачать обратно</a>");
+        httpServletResponse.getWriter().println("<body>");
+        httpServletResponse.getWriter().println("<h1>Файл загружен<h1>");
+        httpServletResponse.getWriter().println("<p><strong>Имя файла:</strong> " + fileName);
+        httpServletResponse.getWriter().println("<p><strong>Путь:</strong> " + filePath);
+        httpServletResponse.getWriter().println("<p><a href='/time-servlet/book?file=" + fileName + "'>Попробуй скачать загруженный файл обратно</a></p>");
+        httpServletResponse.getWriter().println("<p>или</p>");
+        httpServletResponse.getWriter().println("<p><a href='/time-servlet/book'> Перейти на страницу доступных книг для скачивания</a></p>");
+        httpServletResponse.getWriter().println("</body>");
     }
 }

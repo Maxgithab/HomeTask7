@@ -7,8 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,29 +22,69 @@ public class BookDownload extends HttpServlet {
     public void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
         throws IOException, ServletException {
 
-        Path bookPath = Paths.get(getServletContext().getRealPath("/book/GTA_SA_cheat_codes.txt"));
-        System.out.println("Проверка, ищем файл по пути: " + bookPath.toAbsolutePath());
+        String fileName = httpServletRequest.getParameter("file");
 
-
-        if (!Files.exists(bookPath)) {
-            httpServletResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            httpServletResponse.getWriter().println("Alas, there is no the book, lets try find another, ok?..");
-            return;
+        if (fileName == null || fileName.trim().isEmpty()) {
+            showBookList(httpServletResponse);
+        } else {
+            downloadBook(fileName,httpServletResponse);
         }
+    }
+
+        private void showBookList(HttpServletResponse httpServletResponse) throws IOException {
+            httpServletResponse.setContentType("text/html;charset=UTF-8");
+            PrintWriter out = httpServletResponse.getWriter();
+
+            String bookPath = getServletContext().getRealPath(BOOKS_DIRECTORY);
+            Path bookDirectory = Paths.get(bookPath);
+
+            out.println("<!DOCTYPE html>");
+            out.println("<html><head><title>Список книг</title></head><body>");
+            out.println("<h1>Доступные книги</h1>");
+
+            if (!Files.exists(bookDirectory)) {
+                out.println("Alas, there is no books directory");
+             return;}
+
+            try (DirectoryStream<Path> stream = Files.newDirectoryStream(bookDirectory)) {
+                boolean hasFiles = false;
+                out.println("<ul>");
+
+                for (Path entry : stream) {
+                    if (Files.isRegularFile(entry)) {
+                        hasFiles = true;
+                        String name = entry.getFileName().toString();
+                        out.println("<li><a href='/time-servlet/book?file=" + name + "'>" + name + "</a></li>");
+                    }
+                }
+                out.println("</ul>");
+
+                if (!hasFiles) {
+                    out.println("<p>В папке пока нет книг. Загрузите их через /load-book upload.html</p>");
+                }
+            }
+
+            out.println("<hr>");
+            out.println("<a href='/time-servlet/upload.html'>Загрузить новую книгу</a>");
+            out.println("</body></html>");
+        }
+
+         private void downloadBook(String fileName, HttpServletResponse httpServletResponse) throws IOException {
+            String bookPath = getServletContext().getRealPath(BOOKS_DIRECTORY);
+            Path filePath = Paths.get(bookPath, fileName);
+
+            if (!Files.exists(filePath) || Files.isDirectory(filePath)) {
+                httpServletResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
+                httpServletResponse.setContentType("text/html;charset=UTF-8");
+                httpServletResponse.getWriter().println("<h1> Книга не найдена</h1>");
+                httpServletResponse.getWriter().println("<a href='/time-servlet/book'>Вернуться к списку</a>");
+                return;
+            }
+
         //код ниже - скачивание самого файла
         httpServletResponse.setContentType("application/octet-stream");
-        httpServletResponse.setHeader("Content-Disposition", "attachment; filename=" + bookPath.getFileName().toString());
+        httpServletResponse.setHeader("Content-Disposition", "attachment; filename=" + fileName + "\"");
 
-        //качаем пакетами, чтоб не забить память
-        try (InputStream in = Files.newInputStream(bookPath);
-             OutputStream out = httpServletResponse.getOutputStream()) {
-
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = in.read(buffer)) != -1) {
-                out.write(buffer, 0, bytesRead);
-
-            }
-        }
+        Files.copy(filePath, httpServletResponse.getOutputStream());
     }
 }
